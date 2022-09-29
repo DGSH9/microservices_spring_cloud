@@ -2,6 +2,8 @@ package com.dgsh.microservices.currencyexchangeservice.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,9 @@ import com.dgsh.microservices.currencyexchangeservice.repository.CurrencyExchang
 
 @RestController
 public class CurrencyExchangeController {
+	//Adding Logger
+	private Logger logger = LoggerFactory.getLogger(CurrencyExchangeController.class);
+	
 	@Autowired
 	private Environment environment;
 	
@@ -24,6 +29,9 @@ public class CurrencyExchangeController {
 	public CurrencyExchange retrieveAllExchange(
 			@PathVariable("from") String from,
 			@PathVariable("to") String to) {
+		
+		logger.info("retrieveExchangeValue called with {} to {}",from,to);
+		
 //		CurrencyExchange currencyExchange = new CurrencyExchange(10001L,from,to,BigDecimal.valueOf(50));
 		CurrencyExchange currencyExchange = currencyExchangeRepository.findByFromAndTo(from, to);
 		
