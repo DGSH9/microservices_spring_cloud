@@ -8,6 +8,7 @@ public class CircuitBreakerController {
 	
 	@GetMapping("/sample-api")
 	public String sampleApi() {
+		
 		return "Sample API";
 	}
 	
